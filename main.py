@@ -40,3 +40,11 @@ env = DummyVecEnv([lambda: env])
 model = PPO("MlpPolicy", env, verbose = 1) # MlpPolicy is a neural network policy that is used to map states to actions 
 #MLP = multi-layer perceptron, a type of feedforward neural network, mapping eventually decides the action to take for the state 
 #verbose parameter is set to 1, which means that the training output will be printed to the console (logging info)
+
+
+#Save and reload the model 
+PPO_path = os.path.join('Training', 'Saved Models', 'PPO_Model_CartPole')
+#saves it in this path 
+model.save(PPO_path)
+del model 
+model = PPO.load(PPO_path, env=env)
