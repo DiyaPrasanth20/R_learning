@@ -27,3 +27,11 @@ env.close()
 
 env.action_space.sample()  # generates random action (either 0 or 1) 0 pushes cart to the left, 1 pushes cart to the right
 env.observation_space.sample()  # generates random observation # [cart position, cart velocity, pole angle, pole angular velocity]
+
+
+
+
+#Train RL Model 
+env = gym.make("CartPole-v1")
+env = DummyVecEnv([lambda: env])
+model = PPO("MlpPolicy", env, verbose = 1) # MlpPolicy is a neural network policy that is used to map states to actions
