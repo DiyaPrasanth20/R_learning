@@ -57,8 +57,8 @@ PPO_path = os.path.join('Training', 'Saved Models', 'PPO_Model_CartPole')
 model.save(PPO_path)
 del model 
 model = PPO.load(PPO_path, env=env)
-
-
-
 #Reinforcement learning algorithms are chosen based on action space and observation space 
 
+
+
+#Evaluate the model
