@@ -25,4 +25,5 @@ for episode in range(1, episodes + 1):
 env.close()
 
 
-
+env.action_space.sample()  # generates random action (either 0 or 1) 0 pushes cart to the left, 1 pushes cart to the right
+env.observation_space.sample()  # generates random observation # [cart position, cart velocity, pole angle, pole angular velocity]
