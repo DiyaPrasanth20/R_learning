@@ -33,5 +33,10 @@ env.observation_space.sample()  # generates random observation # [cart position,
 
 #Train RL Model 
 env = gym.make("CartPole-v1")
+#the environment is wrapped in a DummyVecEnv object, which is a vectorized environment that allows the model to train
 env = DummyVecEnv([lambda: env])
-model = PPO("MlpPolicy", env, verbose = 1) # MlpPolicy is a neural network policy that is used to map states to actions
+#PPO = proximal policy optimization model, reinforcement learing method, used to train deep neural networks 
+#to make decisions in environments
+model = PPO("MlpPolicy", env, verbose = 1) # MlpPolicy is a neural network policy that is used to map states to actions 
+#MLP = multi-layer perceptron, a type of feedforward neural network, mapping eventually decides the action to take for the state 
+#verbose parameter is set to 1, which means that the training output will be printed to the console (logging info)
