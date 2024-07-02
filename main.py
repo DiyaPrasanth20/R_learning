@@ -32,7 +32,7 @@ env.observation_space.sample()  # generates random observation # [cart position,
 
 '''
 
-
+'''
 
 #Train RL Model 
 log_path = os.path.join('Training', 'Logs') 
@@ -56,9 +56,35 @@ PPO_path = os.path.join('Training', 'Saved Models', 'PPO_Model_CartPole')
 #saves it in this path 
 model.save(PPO_path)
 del model 
+
+'''
+
+
+PPO_path = os.path.join('Training', 'Saved Models', 'PPO_Model_CartPole')
+env = gym.make("CartPole-v1", render_mode='human')
 model = PPO.load(PPO_path, env=env)
 #Reinforcement learning algorithms are chosen based on action space and observation space 
 
 
-
+'''
 #Evaluate the model
+print(evaluate_policy(model, env, n_eval_episodes=10, render=True)) #score of 200 is best 
+#gives (average reward over 10 episodes, standard deviation of the reward over 10 episodes)
+
+'''
+
+
+#Test the model
+episodes = 5
+for episode in range(1, episodes + 1):
+    obs = env.reset()[0]  # For newer gym versions, reset() returns a tuple
+    done = False
+    score = 0
+
+    while not done:
+        env.render()  # shows environment
+        action, _ = model.predict(obs) #second compoenent is the state value
+        obs, reward, done, info = env.step(action)[:4]  # Handle additional return values if any
+        score += reward
+    print('Episode:{} Score:{}'.format(episode, score))
+env.close()
