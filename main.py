@@ -6,7 +6,6 @@ from stable_baselines3.common.evaluation import evaluate_policy
 
 
 
-'''
 #Load Environment - state, action, reward, policy 
 
 # Load Environment - state, action, reward, policy
@@ -30,9 +29,7 @@ env.close()
 env.action_space.sample()  # generates random action (either 0 or 1) 0 pushes cart to the left, 1 pushes cart to the right
 env.observation_space.sample()  # generates random observation # [cart position, cart velocity, pole angle, pole angular velocity]
 
-'''
 
-'''
 
 #Train RL Model 
 log_path = os.path.join('Training', 'Logs') 
@@ -57,7 +54,7 @@ PPO_path = os.path.join('Training', 'Saved Models', 'PPO_Model_CartPole')
 model.save(PPO_path)
 del model 
 
-'''
+
 
 
 PPO_path = os.path.join('Training', 'Saved Models', 'PPO_Model_CartPole')
@@ -66,12 +63,12 @@ model = PPO.load(PPO_path, env=env)
 #Reinforcement learning algorithms are chosen based on action space and observation space 
 
 
-'''
+
 #Evaluate the model
 print(evaluate_policy(model, env, n_eval_episodes=10, render=True)) #score of 200 is best 
 #gives (average reward over 10 episodes, standard deviation of the reward over 10 episodes)
 
-'''
+
 
 
 #Test the model
@@ -90,6 +87,5 @@ for episode in range(1, episodes + 1):
 env.close()
 
 
-#Viewing logs (tensorboard)
  
 
